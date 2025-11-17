@@ -30,8 +30,8 @@ https://www.npmjs.com/package/node-cron
 1. npm i node-cron
 2.Add the below code
 var cron = require('node-cron');
-cron.schedule('* * * * *', () => {  // * Every
-  console.log('running a task every minute');
+cron.schedule('* * * * *', () => {  // When / How Frequently
+  console.log('running a task every minute'); // What
 });
 
 
