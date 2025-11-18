@@ -44,3 +44,27 @@ NodeJs Timers
 -if we run setImmediate() & setTimeout() which is not within an I/O cycle (i.e. the main module), the order in which the two timers are executed is non-deterministic.
 -However, if you move the two calls within an I/O cycle, the immediate callback is always executed first.
 
+
+
+
+Node.js, the difference between development and production
+==========================================================
+-We can have different configurations for production and development environments.
+-Node.js assumes it's always running in a development environment.
+-We can signal Node.js that we are running in production by setting the NODE_ENV=production environment variable
+ 
+ NODE_ENV=production node app.js  (environemnt variable)
+ 
+ node --env-file=.env  app.js (environment file)
+ node --env-file=.development.env app.js
+ node --env-file=.qa.env app.js
+ node --env-file=.prod.env app.js
+ 
+Note: if the same variable is defined in the environment and in the file, the value from the environment takes precedence.
+ 
+if (process.env.NODE_ENV === 'development') {
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+}
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.errorHandler());
+}
