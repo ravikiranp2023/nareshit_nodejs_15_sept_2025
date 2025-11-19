@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="payNow()">Pay Now</button>
+
+    <script>
+      const dataToSend = {
+        user_id: "user123",
+        price: 105,
+        phone: 123451234,
+        name: "Rahman",
+      };
+      async function payNow() {
+        const response = await fetch(`http://localhost:5000/payment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        });
+        const finalResponse = await response.json();
+        console.log(finalResponse);
+        window.open(response.redirectUrl)
+      }
+    </script>
+  </body>
+</html>
